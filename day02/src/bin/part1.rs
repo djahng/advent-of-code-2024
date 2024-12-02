@@ -1,7 +1,4 @@
-use std::{
-    env::{self, join_paths},
-    fs,
-};
+use std::{env, fs};
 
 #[derive(Debug, PartialEq)]
 enum Status {
