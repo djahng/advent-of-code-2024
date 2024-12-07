@@ -1,6 +1,6 @@
-use std::{env, fs};
-
 use itertools::Itertools;
+use rayon::prelude::*;
+use std::{env, fs};
 
 #[derive(Debug, PartialEq, Clone)]
 enum Operators {
@@ -60,7 +60,7 @@ fn main() {
     let input = fs::read_to_string(filename).expect("Could not read file");
 
     let result: u64 = input
-        .lines()
+        .par_lines()
         .filter_map(|line| {
             let equation = Equation::from(&line.to_string());
             equation.evaluate()
