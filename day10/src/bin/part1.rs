@@ -215,9 +215,6 @@ fn main() {
         });
 
     println!("Score: {score}");
-
-    // dbg!(trailheads);
-    // dbg!(summits);
 }
 
 #[cfg(test)]
