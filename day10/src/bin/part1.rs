@@ -107,7 +107,7 @@ impl Trail {
                 tracks.remove(idx);
             }
 
-            // Break if tracks is empty or all tracks have length 9
+            // Break if tracks is empty or all tracks end at the summit
             if tracks.is_empty() || tracks.iter().all(|t| *t.last().unwrap() == self.end) {
                 break;
             }
