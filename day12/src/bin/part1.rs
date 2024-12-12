@@ -178,7 +178,7 @@ EEEC"
     }
 
     #[test]
-    fn it_finds_regions() {
+    fn it_calculates_price() {
         let input = "AA
 BA"
         .to_string();
