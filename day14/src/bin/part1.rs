@@ -1,3 +1,6 @@
+// Puzzle input is 101 wide and 103 tall.
+// To run: `cargo run --bin part1 -- src/bin/input.txt 100 102`
+
 use std::{env, fs};
 
 #[derive(Debug, PartialEq)]
