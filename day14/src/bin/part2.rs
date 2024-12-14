@@ -73,8 +73,6 @@ impl Robot {
 }
 
 fn main() {
-    let n_steps = 100;
-
     let args: Vec<String> = env::args().collect();
     let filename = args
         .get(1)
