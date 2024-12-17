@@ -218,9 +218,9 @@ fn solve(input: &str) -> u64 {
         let mut next = Vec::new();
 
         // Check each input
-        for test_a in input.iter() {
+        for test_a in input.into_iter() {
             // Reset device under test, set test Register A value
-            dut.reg_a = *test_a;
+            dut.reg_a = test_a;
             dut.reg_b = corrupted.reg_b;
             dut.reg_c = corrupted.reg_c;
             dut.ins_ptr = 0;
@@ -233,13 +233,13 @@ fn solve(input: &str) -> u64 {
             if dut.output == corrupted.program[(corrupted.program.len() - i - 1)..] {
                 // The output matches the program
                 if dut.output.len() == corrupted.program.len() {
-                    test_reg_a = std::cmp::min(test_reg_a, *test_a);
+                    test_reg_a = std::cmp::min(test_reg_a, test_a);
                 }
 
                 // Generate multiples of test_a due to modulo 8
                 for n in 0..9 {
-                    if (*test_a * 8 + n) / 8 == *test_a {
-                        next.push(*test_a * 8 + n);
+                    if (test_a * 8 + n) / 8 == test_a {
+                        next.push(test_a * 8 + n);
                     }
                 }
             }
