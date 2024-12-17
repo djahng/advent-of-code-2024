@@ -22,6 +22,7 @@ struct Computer {
     output: Vec<u8>,
 }
 
+#[allow(dead_code)]
 impl Computer {
     fn from(input: &str) -> Self {
         let mut reg_a = 0;
@@ -218,7 +219,7 @@ fn solve(input: &str) -> u64 {
 
         // Check each input
         for test_a in input.iter() {
-            // Reset device under test
+            // Reset device under test, set test Register A value
             dut.reg_a = *test_a;
             dut.reg_b = corrupted.reg_b;
             dut.reg_c = corrupted.reg_c;
@@ -229,14 +230,14 @@ fn solve(input: &str) -> u64 {
             dut.run();
 
             // Check DUT output
-            if corrupted.program[(corrupted.program.len() - i - 1)..] == dut.output {
-                // The end of output matches
+            if dut.output == corrupted.program[(corrupted.program.len() - i - 1)..] {
+                // The output matches the program
                 if dut.output.len() == corrupted.program.len() {
                     test_reg_a = std::cmp::min(test_reg_a, *test_a);
                 }
 
-                // Generate multiples due to modulo 8
-                for n in 0..=8 {
+                // Generate multiples of test_a due to modulo 8
+                for n in 0..9 {
                     if (*test_a * 8 + n) / 8 == *test_a {
                         next.push(*test_a * 8 + n);
                     }
